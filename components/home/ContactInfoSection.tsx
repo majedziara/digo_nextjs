@@ -26,7 +26,7 @@ export default function ContactInfoSection() {
   return (
     <Reveal
       className="
-  flex items-center justify-center flex-wrap bg-muted
+  flex items-center justify-start md:justify-center flex-wrap bg-muted 
         gap-x-18 gap-y-8 md:gap-32 py-12 px-12 md:py-12 md:px-44 w-full relative"
     >
       {contacts.map((contact, item) => (
