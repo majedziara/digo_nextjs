@@ -6,8 +6,7 @@ import HeroSection from "@/components/home/HeroSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import ShortServicesSection from "@/components/home/ShortServicesSection";
 
-export default async function Home() {
-  await new Promise((resolve) => setTimeout(resolve, 10000));
+export default function Home() {
   return (
     <div>
       <main className="relative w-screen box-border">
