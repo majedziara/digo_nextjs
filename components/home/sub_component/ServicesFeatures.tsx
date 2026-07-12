@@ -1,0 +1,181 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useLocale, useTranslations } from "next-intl";
+
+import { getDirection } from "@/i18n/getDirection";
+import {
+  Brush,
+  Code2,
+  Megaphone,
+  Palette,
+  PenTool,
+  Search,
+  Star,
+  TrendingUp,
+  TriangleRight,
+} from "lucide-react";
+
+export const serviceIcons = {
+  TrendingUp, // Marketing Strategy
+  PenTool, // Creative Content Writing
+  Palette, // Visual Branding
+  Brush, // Graphic Design
+  Code2, // Website & Application Design
+  Search, // Search Engine Optimization (SEO)
+  Megaphone, // Paid Advertising Campaigns
+};
+
+type Item = {
+  title: string;
+  description: string;
+  features: string[];
+  icon: keyof typeof serviceIcons;
+};
+
+export default function ServicesFeatures() {
+  const t = useTranslations("servicesSection");
+  const items: Item[] = t.raw("items");
+
+  const locale = useLocale();
+  const dir = getDirection(locale);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const [distance, setDistance] = useState(0);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // ✅ حساب حقيقي للمسافة (fix mobile issue)
+  useEffect(() => {
+    if (!trackRef.current || !containerRef.current) return;
+
+    const trackWidth = trackRef.current.scrollWidth;
+    const containerWidth = containerRef.current.offsetWidth;
+
+    setDistance(trackWidth - containerWidth);
+  }, [items]);
+
+  // ✅ حركة حسب اللغة
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    dir === "rtl" ? [0, distance] : [0, -distance],
+  );
+
+  // ترتيب العناصر (لـ RTL فقط للـ UI)
+  const displayItems = dir === "rtl" ? [...items].reverse() : items;
+
+  return (
+    <div ref={containerRef} className="relative h-[350vh] w-full">
+      <div className="sticky top-10 h-screen overflow-hidden flex items-center">
+        <motion.div
+          ref={trackRef}
+          style={{ x }}
+          dir="ltr"
+          className="flex gap-6 ps-8 will-change-transform"
+        >
+          {displayItems.map((item, index) => {
+            const Icon = serviceIcons[item.icon] ?? Palette;
+
+            return (
+              <div
+                key={index}
+                dir={dir}
+                className="
+                  shrink-0
+                  w-120
+                  h-130
+                  overflow-hidden
+                  bg-[#1e1e1e]
+                  rounded-t-[80px]
+                  text-white
+                  px-16
+                  pt-24
+                  pb-16
+                  flex
+                  flex-col
+                  justify-evenly
+                  items-center
+                  gap-4
+                  relative
+                  group
+                "
+              >
+                {/* background hover layer */}
+                <div
+                  className="
+                    absolute
+                    right-0
+                    top-full
+                    w-full
+                    h-full
+                    rounded-t-[80px]
+                    bg-linear-to-tr
+                    from-[#6F3E95]
+                   via-[#8B5DB5]
+                  to-[#B68CD7]
+                    opacity-50
+                    duration-500
+                    group-hover:top-0
+                    group-active:top-0
+                    group-hover:scale-100
+                    group-active:scale-100
+                    scale-90
+                    z-10
+                  "
+                />
+
+                {/* number */}
+                <div className="absolute top-8 right-10 text-8xl font-black text-white/5">
+                  0{dir === "rtl" ? items.length - index : index + 1}
+                </div>
+
+                {/* icon */}
+                <div className="p-5 duration-500 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 group-hover:bg-white group-active:bg-white z-20">
+                  <Icon size={32} className="text-primary" />
+                </div>
+
+                {/* title */}
+                <h3 className="text-2xl font-bold z-20 text-center">
+                  {item.title}
+                </h3>
+
+                {/* description */}
+                <h4 className="text-lg z-20 text-center">{item.description}</h4>
+
+                <hr className="w-full duration-500 group-hover:border-primary group-active:border-primary" />
+
+                {/* features */}
+                <div className="w-full flex flex-col gap-3 z-20">
+                  {item.features.map((feature, i) => (
+                    <div key={i} className="flex items-center gap-3 relative">
+                      <TriangleRight
+                        size={24}
+                        strokeWidth={0}
+                        className="
+                          absolute
+                          fill-white/10
+                          group-hover:fill-primary
+                          group-active:fill-primary
+                          duration-700
+                        "
+                      />
+                      <Star size={16} className="z-20 shrink-0" />
+                      <span className="text-xl z-20">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </motion.div>
+      </div>
+    </div>
+  );
+}

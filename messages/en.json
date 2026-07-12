@@ -1,0 +1,178 @@
+{
+  "Navbar": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "clients": "Clients",
+    "contact": "Contact"
+  },
+
+  "Hero": {
+    "title1": "Building Your Digital Presence",
+    "title2": "Driving Your Brand Growth",
+    "description": "DIGO is your digital marketing partner, delivering innovative strategies and creative solutions that help brands connect with their audiences, strengthen their presence, and achieve measurable growth in the digital world.",
+    "startNow": "Start Your Project"
+  },
+
+  "ShortServices": {
+    "items": [
+      {
+        "title": "Digital Marketing",
+        "description": "Strategic marketing solutions designed to connect your brand with the right audience and achieve sustainable growth."
+      },
+      {
+        "title": "Branding & Design",
+        "description": "Creating professional visual identities that reflect your brand personality and leave a lasting impression."
+      },
+      {
+        "title": "Digital Solutions",
+        "description": "Developing modern digital experiences through websites and solutions that support your business goals."
+      }
+    ]
+  },
+
+  "aboutSection": {
+    "information": "About Us",
+    "about": "DIGO",
+    "aboutTitle": "Turning Ideas Into Digital Experiences That Make an Impact",
+    "aboutDescription": "Since 2020, DIGO has been helping businesses and brands build a stronger digital presence through a combination of strategic thinking, creativity, and modern technologies. We believe every brand has a story worth sharing, and our mission is to transform business goals into effective digital solutions that create real impact.",
+    "vision": "Our Vision",
+    "visionDescription": "To become a trusted digital partner for businesses and brands across Saudi Arabia by delivering innovative marketing solutions that create meaningful growth.",
+    "mission": "Our Mission",
+    "missionDescription": "Empowering businesses to grow through strategic marketing, creative content, and digital experiences that build stronger connections with their customers."
+  },
+
+  "servicesSection": {
+    "services": "Our Services",
+    "servicesTitle": "Digital & Marketing Solutions Built For Growth",
+    "servicesDescription": "We combine strategy, creativity, and technology to deliver digital services that help brands compete, reach their audiences, and achieve their business objectives.",
+
+    "items": [
+      {
+        "icon": "TrendingUp",
+        "title": "Marketing Strategy",
+        "description": "We help you build clear marketing strategies based on market insights and audience understanding to turn your goals into actionable plans.",
+        "features": [
+          "Market & Competitor Analysis",
+          "Target Audience Research",
+          "Growth Strategy Planning"
+        ]
+      },
+      {
+        "icon": "PenTool",
+        "title": "Creative Content Writing",
+        "description": "We create engaging content that represents your brand voice and builds meaningful connections with your audience through creative storytelling.",
+        "features": [
+          "Marketing Content",
+          "Social Media Content",
+          "Advertising Copywriting"
+        ]
+      },
+      {
+        "icon": "Palette",
+        "title": "Visual Branding",
+        "description": "We create complete visual identities that give your brand a distinctive presence and communicate its values professionally.",
+        "features": [
+          "Logo Design",
+          "Brand Guidelines",
+          "Company Profiles"
+        ]
+      },
+      {
+        "icon": "Brush",
+        "title": "Graphic Design",
+        "description": "Creative designs that support your marketing goals and strengthen your brand image across different platforms.",
+        "features": [
+          "Social Media Designs",
+          "Advertising Materials",
+          "Marketing Collaterals"
+        ]
+      },
+            {
+        "icon": "Code2",
+        "title": "Website & Application Design",
+        "description": "We design and develop modern digital experiences that combine attractive interfaces, smooth user experience, and reliable performance.",
+        "features": [
+          "UI/UX Design",
+          "Corporate Websites",
+          "E-Commerce Solutions"
+        ]
+      },
+      {
+        "icon": "Search",
+        "title": "Search Engine Optimization (SEO)",
+        "description": "We improve your online visibility and help your business reach potential customers through effective search engine optimization strategies.",
+        "features": [
+          "Technical SEO",
+          "Content Optimization",
+          "Performance Analysis"
+        ]
+      },
+      {
+        "icon": "Megaphone",
+        "title": "Paid Advertising Campaigns",
+        "description": "We manage strategic advertising campaigns across digital platforms to reach your target audience and maximize your marketing investment.",
+        "features": [
+          "Google Ads",
+          "Meta Ads",
+          "Campaign Performance Reports"
+        ]
+      }
+    ]
+  },
+
+  "clientsSection": {
+    "clients": "Our Clients",
+    "clientsTitle": "Building Partnerships Based on Trust & Success",
+    "clientsDescription": "We are proud to work with businesses and brands that chose DIGO as their digital partner. We focus on building long-term partnerships based on quality, creativity, and measurable results."
+  },
+
+  "contactSection": {
+    "contact": "Contact Us",
+    "contactTitle": "Ready To Turn Your Ideas Into Digital Success",
+    "contactDescription": "Whether you are launching a new business or looking to enhance your brand's digital presence, DIGO team is ready to understand your goals and provide the right solutions to achieve them.",
+
+    "name": "Name",
+    "email": "Email Address",
+    "phoneNumber": "Phone Number",
+    "subject": "Subject",
+    "message": "Write your message...",
+    "sendBtn": "Send Message",
+
+    "nameRequired": "Name is required.",
+    "emailRequired": "Please enter a valid email address.",
+    "phoneNumberRequired": "Phone number is required.",
+    "subjectRequired": "Subject is required.",
+    "messageToShort": "Message is too short.",
+
+    "success": "Your message has been sent successfully. We will contact you soon.",
+    "error": "Unable to send your message. Please try again.",
+    "missingFields": "Please complete all required fields.",
+    "loading": "Sending message..."
+  },
+
+  "contactInfoSection": {
+    "contactUs": "Contact Information",
+    "emailAddress": "Email Address",
+    "visitUs": "Visit Us",
+    "address":"Riyadh, Saudi Arabia"
+  },
+
+  "footer": {
+    "title": "DIGO... Creating digital strategies that build brands and drive growth.",
+    "newsletter": "Subscribe To Our Newsletter",
+    "company": "Company",
+
+    "emailPlaceholder": "Enter your email address",
+    "subscribe": "Subscribe",
+
+    "emailRequired": "Please enter a valid email address.",
+    "missingFields": "Please complete all required fields.",
+    "alreadySubscribed": "You are already subscribed.",
+    "success": "Successfully subscribed.",
+    "error": "Something went wrong. Please try again.",
+    "loading": "Subscribing...",
+
+    "copyright": "© 2020–{year} DIGO. All Rights Reserved."
+  }
+}
