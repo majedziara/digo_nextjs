@@ -1,22 +1,24 @@
-import { siteConfig } from "@/lib/site";
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+
+export const baseUrl = "https://digo-sa.vercel.app";
+
+const locales = ["ar", "en"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = siteConfig.url;
+  return locales.map((locale) => ({
+    url: `${baseUrl}/${locale}`,
 
-  return [
-    {
-      url: `${base}/ar`,
-      priority: 1,
-      changeFrequency: "weekly",
-      lastModified: "new Date()",
-    },
+    lastModified: new Date(),
 
-    {
-      url: `${base}/en`,
-      priority: 1,
-      changeFrequency: "weekly",
-      lastModified: "new Date()",
+    changeFrequency: "weekly",
+
+    priority: 1,
+
+    alternates: {
+      languages: {
+        ar: `${baseUrl}/ar`,
+        en: `${baseUrl}/en`,
+      },
     },
-  ];
+  }));
 }
