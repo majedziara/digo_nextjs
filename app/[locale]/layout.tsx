@@ -55,6 +55,12 @@ export default async function RootLayout({
       data-scroll-behavior="smooth"
       className={`${rubik.variable} ${zain.variable} h-full antialiased`}
     >
+      <head>
+        <meta
+          name="google-site-verification"
+          content="PNPw-FFy-OJowtOOJyXNngOL1AWrfvNVEtd_GczupYY"
+        />
+      </head>
       <body className="min-h-screen overflow-x-hidden relative flex flex-col">
         <StructuredData />
         <NextIntlClientProvider>
