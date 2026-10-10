@@ -1,8 +1,6 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,23 +21,12 @@ type FormData = {
 export default function ContactForm() {
   const t = useTranslations("contactSection");
 
-  // 🧠 schema inside component to access i18n
-  const schema = z.object({
-    name: z.string().min(2, t("nameRequired")),
-    email: z.string().email(t("emailRequired")),
-    phoneNumber: z.string().min(8, t("phoneNumberRequired")),
-    subject: z.string().min(2, t("subjectRequired")),
-    message: z.string().min(10, t("messageToShort")),
-  });
-
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
-  });
+  } = useForm<FormData>();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -70,47 +57,67 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form noValidate aria-busy={isLoading} onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* Row 1 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Field
+          id="contact-name"
+          type="text"
+          autoComplete="name"
+          required
           placeholder={t("name")}
           error={errors.name?.message}
-          {...register("name")}
+          {...register("name", { required: t("nameRequired"), minLength: { value: 2, message: t("nameRequired") } })}
         />
 
         <Field
+          id="contact-email"
+          type="email"
+          autoComplete="email"
+          required
           placeholder={t("email")}
           error={errors.email?.message}
-          {...register("email")}
+          {...register("email", { required: t("emailRequired"), pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: t("emailRequired") } })}
         />
       </div>
 
       {/* Row 2 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Field
+          id="contact-phoneNumber"
+          type="tel"
+          autoComplete="tel"
+          required
           placeholder={t("phoneNumber")}
           error={errors.phoneNumber?.message}
-          {...register("phoneNumber")}
+          {...register("phoneNumber", { required: t("phoneNumberRequired"), minLength: { value: 8, message: t("phoneNumberRequired") } })}
         />
 
         <Field
+          id="contact-subject"
+          type="text"
+          autoComplete="off"
+          required
           placeholder={t("subject")}
           error={errors.subject?.message}
-          {...register("subject")}
+          {...register("subject", { required: t("subjectRequired"), minLength: { value: 2, message: t("subjectRequired") } })}
         />
       </div>
 
       {/* Message */}
       <div>
+        <label htmlFor="contact-message" className="sr-only">{t("message")}</label>
         <Textarea
+          id="contact-message"
+          required
+          aria-describedby={errors.message ? "contact-message-error" : undefined}
           placeholder={t("message")}
           className="min-h-37.5 resize-none"
-          {...register("message")}
+          {...register("message", { required: t("messageToShort"), minLength: { value: 10, message: t("messageToShort") } })}
         />
 
         {errors.message && (
-          <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+          <p id="contact-message-error" role="alert" className="text-red-500 text-sm mt-1">{errors.message.message}</p>
         )}
       </div>
 
@@ -133,7 +140,9 @@ type FieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
 function Field({ error, ...props }: FieldProps) {
   return (
     <div>
+      <label htmlFor={props.id} className="sr-only">{props.placeholder}</label>
       <Input
+        aria-describedby={error ? `${props.id}-error` : undefined}
         {...props}
         className="
           transition
@@ -141,7 +150,7 @@ function Field({ error, ...props }: FieldProps) {
         "
       />
 
-      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+      {error && <p id={`${props.id}-error`} role="alert" className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
   );
 }

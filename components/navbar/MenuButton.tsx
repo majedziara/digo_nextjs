@@ -1,13 +1,19 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useLocale } from "next-intl";
 import { useState } from "react";
 
 export default function MenuButton() {
+  const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <button
+      type="button"
+      aria-label={locale === "ar" ? "القائمة الرئيسية" : "Main menu"}
+      aria-expanded={isOpen}
+      aria-controls="mobile-navigation"
       onClick={() => {
         setIsOpen((prev) => {
           const next = !prev;

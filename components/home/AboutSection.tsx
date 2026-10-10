@@ -19,6 +19,7 @@ export default function AboutSection() {
         <Reveal delay={0.5} direction="up">
           <InteractiveImage
             src="/assets/images/about/about-2.webp"
+            sizes="(max-width: 768px) 100vw, 50vw"
             alt="about-2"
             width={1000}
             height={600}
@@ -74,6 +75,7 @@ export default function AboutSection() {
         <Reveal delay={0.6} direction="up">
           <InteractiveImage
             src="/assets/images/about/about-1.webp"
+            sizes="(max-width: 768px) 100vw, 33vw"
             alt="about-2"
             width={1000}
             height={600}

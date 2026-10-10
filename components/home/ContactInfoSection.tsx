@@ -42,7 +42,7 @@ export default function ContactInfoSection() {
             {contact.href == "" ? (
               contact.value
             ) : (
-              <Link href={contact.href} target="_blank">
+              <Link href={contact.href} target="_blank" rel="noopener noreferrer">
                 {contact.value}
               </Link>
             )}

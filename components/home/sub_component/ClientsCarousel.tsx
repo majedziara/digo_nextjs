@@ -10,13 +10,13 @@ import { getDirection } from "@/i18n/getDirection";
 import Autoplay from "embla-carousel-autoplay";
 import { useLocale } from "next-intl";
 import Image from "next/image";
-import { useRef } from "react";
+import { useState } from "react";
 
 export default function ClientsCarousel() {
   const locale = useLocale();
   const dir = getDirection(locale);
 
-  const plugin = useRef(
+  const [plugin] = useState(() =>
     Autoplay({
       delay: 2000, // كل ثانيتين
       stopOnInteraction: false, // يكمل بعد السحب
@@ -26,7 +26,7 @@ export default function ClientsCarousel() {
 
   return (
     <Carousel
-      plugins={[plugin.current]}
+      plugins={[plugin]}
       dir={dir}
       opts={{
         direction: dir,
@@ -42,6 +42,7 @@ export default function ClientsCarousel() {
               <div className="flex rounded-2xl shadow-lg aspect-square items-center justify-center p-6">
                 <Image
                   src={`/assets/images/clients/${index + 1}.webp`}
+                  sizes="(max-width: 1024px) 30vw, 18vw"
                   width={500}
                   height={500}
                   loading="lazy"
@@ -53,8 +54,8 @@ export default function ClientsCarousel() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="left-2 md:-left-12" />
-      <CarouselNext className="right-2 md:-right-12" />
+      <CarouselPrevious aria-label={locale === "ar" ? "الشعار السابق" : "Previous logo"} className="left-2 md:-left-12" />
+      <CarouselNext aria-label={locale === "ar" ? "الشعار التالي" : "Next logo"} className="right-2 md:-right-12" />
     </Carousel>
   );
 }

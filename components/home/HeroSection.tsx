@@ -137,12 +137,12 @@ overflow-hidden
       <div className="grid grid-cols-2 max-md:grid-cols-1 gap-6  w-full h-full pt-12 md:px-12 px-4 max-md:pt-28 items-center justify-between">
         <div className="content-col flex flex-col gap-6">
           <Reveal delay={0.5}>
-            <h2
+            <h1
               className={`font-extrabold ${dir === "rtl" ? "text-5xl/relaxed max-lg:text-4xl/relaxed" : "text-5xl max-lg:text-4xl"}`}
             >
               {t("title1")}
               <br /> <span className="text-primary">{t("title2")}</span>
-            </h2>
+            </h1>
           </Reveal>
           <Reveal delay={0.7}>
             <h3 className="text-2xl/normal max-lg:text-xl">
@@ -195,6 +195,8 @@ to-[#E9D28A]
               src={"/assets/images/hero/hero.webp"}
               alt="hero-khota"
               loading="eager"
+              fetchPriority="high"
+              sizes="(max-width: 768px) 241px, 321px"
               className={`w-auto object-cover absolute h-96 max-md:h-72 ${dir === "ltr" ? "-bottom-32 max-sm:-bottom-12 lg:-bottom-24" : "-bottom-36 max-md:-bottom-8"}`}
             />
           </div>

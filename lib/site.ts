@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "DIGO",
 
-  url: process.env.NEXT_PUBLIC_BASE_URL!,
+  url: process.env.NEXT_PUBLIC_BASE_URL || "https://digo-sa.vercel.app",
 
   email: "info@digo.sa",
 

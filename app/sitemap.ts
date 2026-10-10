@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 
-export const baseUrl = "https://digo-sa.vercel.app";
+import { siteConfig } from "@/lib/site";
+
+const baseUrl = siteConfig.url;
 
 const locales = ["ar", "en"];
 

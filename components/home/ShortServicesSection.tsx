@@ -30,6 +30,7 @@ export default function ShortServicesSection() {
           <Image
             src={imgs[index]}
             alt={item.title}
+            sizes="(max-width: 768px) 25vw, 10vw"
             width={400}
             height={400}
             className="w-1/4 z-20 object-contain"

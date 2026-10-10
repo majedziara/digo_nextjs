@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -18,18 +16,12 @@ export default function SubscribeForm() {
   const t = useTranslations("footer");
   const locale = useLocale();
 
-  const schema = z.object({
-    email: z.string().email(t("emailRequired")),
-  });
-
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
-  });
+  } = useForm<FormData>();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -66,11 +58,18 @@ export default function SubscribeForm() {
 
   return (
     <form
+      noValidate
+      aria-busy={isLoading}
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col lg:flex-row gap-3 w-full"
     >
       <div className="flex-1">
+        <label htmlFor="newsletter-email" className="sr-only">{t("emailPlaceholder")}</label>
         <Input
+          id="newsletter-email"
+          autoComplete="email"
+          required
+          aria-describedby={errors.email ? "newsletter-email-error" : undefined}
           type="email"
           placeholder={t("emailPlaceholder")}
           className="
@@ -83,11 +82,11 @@ export default function SubscribeForm() {
             focus:ring-primary/20
             p-4
           "
-          {...register("email")}
+          {...register("email", { required: t("emailRequired"), pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: t("emailRequired") } })}
         />
 
         {errors.email && (
-          <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>
+          <p id="newsletter-email-error" role="alert" className="text-red-400 text-sm mt-1">{errors.email.message}</p>
         )}
       </div>
 
