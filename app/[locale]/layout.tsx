@@ -10,6 +10,8 @@ import FooterSection from "@/components/FooterSection";
 import ScrollButton from "@/components/ScrollButton";
 import LanguageButton from "@/components/LanguageButton";
 import { getMetadata } from "@/lib/metadata";
+import Script from "next/script";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import StructuredData from "@/components/seo/StructuredData";
 
 export const rubik = Rubik({
@@ -23,6 +25,10 @@ export const zain = Zain({
   variable: "--font-zain",
 });
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -30,6 +36,7 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
 
+  if (!hasLocale(routing.locales, locale)) notFound();
   return getMetadata(locale);
 }
 
@@ -48,6 +55,9 @@ export default async function RootLayout({
     notFound();
   }
 
+  setRequestLocale(locale);
+  const messages = await getMessages();
+
   return (
     <html
       lang={locale}
@@ -63,7 +73,21 @@ export default async function RootLayout({
       </head>
       <body className="min-h-screen overflow-x-hidden relative flex flex-col">
         <StructuredData />
-        <NextIntlClientProvider>
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <Script id="google-analytics-init" strategy="lazyOnload">
+              {`window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-RPCZRLDHZ9');`}
+            </Script>
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=G-RPCZRLDHZ9"
+              strategy="lazyOnload"
+            />
+          </>
+        )}
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Toaster richColors position="top-right" />
           <Navbar />
           {children}

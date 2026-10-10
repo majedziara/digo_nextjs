@@ -9,32 +9,33 @@ export default function Navbar() {
     <>
       <NavbarScroll />
 
-      <div className="px-12 inset-x-0 box-border flex fixed w-full navbar flex-col z-50 max-md:bg-background/80 max-md:border-b max-md:border-border max-md:py-1">
+      <header className="px-12 inset-x-0 box-border flex fixed w-full navbar flex-col z-50 max-md:bg-background/80 max-md:border-b max-md:border-border max-md:py-1">
         <div className="flex flex-row justify-between items-center">
           <Link href="#home" className="logo h-20">
             <Image
-              priority
+              preload
+              sizes="80px"
               src="/logo.png"
-              alt="logo"
+              alt="DIGO"
               height={50}
               width={100}
               className="h-full w-auto"
             />
           </Link>
 
-          <div className="max-md:hidden flex-1 flex items-center justify-center gap-12">
+          <nav aria-label="Primary" className="max-md:hidden flex-1 flex items-center justify-center gap-12">
             <NavLinks />
-          </div>
+          </nav>
 
           <div className="md:hidden flex items-center">
             <MenuButton />
           </div>
         </div>
 
-        <div className="md:hidden mobile-navbar flex-col gap-5 items-center pb-4">
+        <nav id="mobile-navigation" aria-label="Mobile" className="md:hidden mobile-navbar flex-col gap-5 items-center pb-4">
           <NavLinks />
-        </div>
-      </div>
+        </nav>
+      </header>
     </>
   );
 }

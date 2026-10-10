@@ -14,10 +14,10 @@ import { siteConfig } from "@/lib/site";
 
 export default function FooterSection() {
   const socialAccounts = [
-    { icon: FaFacebook, href: siteConfig.social.facebook },
-    { icon: FaInstagram, href: siteConfig.social.instagram },
-    { icon: FaWhatsapp, href: siteConfig.social.whatsapp },
-    { icon: FaLinkedin, href: siteConfig.social.linkedin },
+    { label: "Facebook", icon: FaFacebook, href: siteConfig.social.facebook },
+    { label: "Instagram", icon: FaInstagram, href: siteConfig.social.instagram },
+    { label: "WhatsApp", icon: FaWhatsapp, href: siteConfig.social.whatsapp },
+    { label: "LinkedIn", icon: FaLinkedin, href: siteConfig.social.linkedin },
   ];
   const t = useTranslations("footer");
   const navT = useTranslations("Navbar");
@@ -37,7 +37,8 @@ export default function FooterSection() {
         <div className="h-full w-full flex flex-col gap-3">
           <Image
             src={"/logo.png"}
-            alt="logo"
+            alt="DIGO"
+            sizes="(max-width: 768px) 50vw, 17vw"
             width={512}
             height={512}
             className="w-1/2 h-auto"
@@ -50,7 +51,7 @@ export default function FooterSection() {
               .map((account, index) => {
                 const Icon = account.icon;
                 return (
-                  <Link key={index} href={account.href} target="_blank">
+                  <Link key={index} href={account.href} target="_blank" rel="noopener noreferrer" aria-label={account.label}>
                     <Icon
                       size={24}
                       className="text-white hover:text-primary duration-500"

@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLocale } from "next-intl";
 import { ArrowBigUp } from "lucide-react";
 
 export default function ScrollButton() {
+  const locale = useLocale();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -11,7 +13,8 @@ export default function ScrollButton() {
       setShow(window.scrollY > 300);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -26,7 +29,11 @@ export default function ScrollButton() {
   };
 
   return (
-    <div
+    <button
+      type="button"
+      aria-label={locale === "ar" ? "العودة إلى الأعلى" : "Back to top"}
+      tabIndex={show ? 0 : -1}
+      aria-hidden={!show}
       onClick={scrollToTop}
       className={`
         fixed
@@ -48,6 +55,6 @@ export default function ScrollButton() {
       `}
     >
       <ArrowBigUp color="white" height={40} size={24} />
-    </div>
+    </button>
   );
 }

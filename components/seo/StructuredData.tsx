@@ -6,11 +6,11 @@ export default function StructuredData() {
 
     "@type": "Organization",
 
-    name: "Ebdaa",
+    name: siteConfig.name,
 
     url: siteConfig.url,
 
-    logo: siteConfig.url + "/logo.svg",
+    logo: siteConfig.url + "/logo.png",
 
     description:
       "Advertising, Branding, Digital Marketing and Web Development.",
@@ -23,14 +23,15 @@ export default function StructuredData() {
       siteConfig.social.whatsapp,
       siteConfig.social.instagram,
       siteConfig.social.facebook,
-    ],
+      siteConfig.social.linkedin,
+    ].filter(Boolean),
   };
 
   return (
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(jsonLd),
+        __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
       }}
     />
   );

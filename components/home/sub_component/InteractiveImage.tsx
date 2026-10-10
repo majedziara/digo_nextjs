@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { ImageProps } from "next/image";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "motion/react";
 import { useState } from "react";
 
 type InteractiveImageProps = {
@@ -14,6 +14,7 @@ type InteractiveImageProps = {
 
 export default function InteractiveImage({
   className,
+  alt,
   overlay = true,
   scale = 1.03,
   perspective = 1000,
@@ -78,7 +79,7 @@ export default function InteractiveImage({
         }}
         className="w-full h-full"
       >
-        <Image {...props} className="object-cover w-full h-full" />
+        <Image alt={alt} {...props} className="object-cover w-full h-full" />
       </motion.div>
 
       {/* 🌑 Subtle overlay */}

@@ -37,6 +37,7 @@ export default function ContactSection() {
           <div className="overflow-hidden rounded-xl relative">
             <Image
               src="/assets/images/contact/contact.webp"
+              sizes="(max-width: 768px) 100vw, 50vw"
               alt="contact us"
               width={1000}
               height={700}

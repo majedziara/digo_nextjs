@@ -21,6 +21,8 @@ export function getMetadata(locale: string): Metadata {
 
     description,
 
+    applicationName: "DIGO|ديجو",
+
     keywords: isArabic
       ? [
           "ديجو",
@@ -70,8 +72,6 @@ export function getMetadata(locale: string): Metadata {
     creator: "DIGO",
 
     publisher: "DIGO",
-
-    applicationName: "DIGO",
 
     category: "Business",
 
